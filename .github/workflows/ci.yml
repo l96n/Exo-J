@@ -36,6 +36,7 @@ jobs:
           flake8 .
 
   trivy-scan:
+  
     needs: test-python
     runs-on: ubuntu-latest
     steps:
@@ -47,8 +48,7 @@ jobs:
         with:
           scan-type: 'fs'
           scan-ref: '.'
-          format: 'sarif'
-          output: 'trivy-results.sarif'
+          format: 'table'  
           severity: 'CRITICAL,HIGH,MEDIUM'
 
       - name: Upload Trivy scan results to GitHub Security tab
